@@ -1,0 +1,644 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Nunito', sans-serif;
+}
+:root{font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#23324b;background:#f8f9ff;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer;border:1px solid #d5dcf0;background:#fff;border-radius:14px;padding:12px 17px;color:#263553;font-weight:750}button:hover{background:#edf1ff}button:disabled{opacity:.45;cursor:not-allowed}.app{min-height:100vh;display:flex;flex-direction:column}.topbar{background:#fff;border-bottom:1px solid #e8eafa;padding:15px max(20px,calc((100vw - 1100px)/2));display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-size:24px;border:0;color:#7355c9}.topbar nav{display:flex;gap:8px}.topbar nav button{border:0;font-size:14px}main{flex:1;width:min(1100px,100%);margin:0 auto;padding:26px 18px 60px}.hero{text-align:center;margin:7vh auto 0;max-width:650px}.hero-emoji{font-size:65px}.hero h1{font-size:clamp(40px,7vw,72px);margin:12px}.hero p{font-size:21px}.primary{background:#7658dd;color:white;border-color:#7658dd}.primary:hover{background:#6042c9}.big{font-size:24px;padding:20px 45px}.muted{color:#6b7893}.hint{background:#eaf5ff;padding:18px;border-radius:18px;margin-top:30px}.play-area{max-width:790px;margin:auto}.progress{font-weight:750;margin:10px 0 18px}.progress-track{height:12px;background:#e5e8f3;border-radius:20px;margin-top:10px;overflow:hidden}.progress-track div{height:100%;background:#67c8a2;transition:width .2s}.play-card{background:#fff;border:1px solid #e3e6f2;border-radius:24px;padding:22px;box-shadow:0 8px 30px #2635530b}.lesson-media{display:block;width:100%;height:320px;object-fit:contain;background:#edf1f8;border-radius:18px}.media-placeholder{height:220px;display:grid;place-items:center;background:#eaf1fa;border-radius:18px;color:#72809a}.question-line{display:flex;align-items:center;gap:12px}.question-line h2{font-size:clamp(23px,4vw,34px);margin-bottom:6px}.sound{font-size:24px}.answer-zone{min-height:90px;border:2px dashed #cdd5ee;border-radius:18px;padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}.word-bank{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0}.word{font-size:20px;padding:13px 19px;box-shadow:0 3px 0 #d7dcec}.word.selected{background:#e9e3ff}.feedback{padding:15px;border-radius:14px;font-weight:750}.feedback.good{background:#e4f8eb;color:#226d47}.feedback.try{background:#fff4dd;color:#805b14}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}.actions .primary{margin-left:auto}.parent{max-width:1040px;margin:auto}.heading-row{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}.heading-row h1{font-size:34px}.warning{background:#fff5dc;border:1px solid #f1dfa9;border-radius:16px;padding:16px;margin:20px 0}.library-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}.media-card{background:#fff;border:1px solid #e0e5f0;border-radius:18px;overflow:hidden}.media-card .lesson-media,.media-card .media-placeholder{height:190px;border-radius:0}.card-info{padding:15px}.card-info h3{margin:0}.card-info p{font-size:14px}.card-info button{padding:9px 13px}.danger{color:#aa3546}.editor{max-width:760px}.editor label{display:block;font-weight:750;margin:16px 0}.editor input{display:block;width:100%;margin-top:7px;border:1px solid #cbd3e6;border-radius:12px;padding:13px;background:white}.question-editor{background:white;border:1px solid #e1e5f1;border-radius:18px;padding:18px;margin:16px 0}.question-editor h3{margin:0}.error{color:#a32135;font-weight:750}footer{text-align:center;color:#8790a5;padding:22px}@media(max-width:600px){.topbar{padding:12px}.brand{font-size:19px}.topbar nav button{font-size:12px;padding:10px}.lesson-media{height:235px}.play-card{padding:14px}.word{font-size:18px;padding:12px}.heading-row h1{font-size:27px}}
+
+.admin-panel{background:#fff;border:1px solid #e0e5f0;border-radius:18px;padding:22px;margin:20px 0}.admin-panel label{display:block;font-weight:750;margin:14px 0}.admin-panel input:not([type=file]){display:block;width:100%;max-width:480px;margin-top:7px;border:1px solid #cbd3e6;border-radius:12px;padding:12px}.admin-panel input[type=file]{display:block;width:100%;margin:16px 0}.upload-results{list-style:none;padding:0}.upload-results li{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #e8eafa;overflow-wrap:anywhere}.upload-results li span:last-child{color:#65728a;font-size:14px}.topbar nav{flex-wrap:wrap}
+
+.upload-dropzone{border:3px dashed #b4a4f0;background:#f7f4ff;border-radius:22px;min-height:220px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;transition:background .15s,border-color .15s}
+.upload-dropzone.is-dragging{background:#e9e0ff;border-color:#7658dd}.upload-dropzone.is-disabled{opacity:.6;pointer-events:none}.upload-dropzone-icon{font-size:48px}.upload-dropzone strong{font-size:20px}.upload-dropzone span{color:#6b7893}.upload-choose-button{position:relative;overflow:hidden;display:inline-block!important;margin:8px 0 0!important;background:#7658dd;color:#fff;padding:12px 22px;border-radius:14px;cursor:pointer}.upload-choose-button input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0}.upload-choose-button:focus-within{outline:3px solid #23324b;outline-offset:3px}
+/* Lesson editor */
+.library-open{border:0;background:transparent;padding:5px 0;text-align:left;color:#23324b;font-weight:700}.library-open:hover{text-decoration:underline}.lesson-editor .lesson-media{max-height:360px}.lesson-editor label{display:block;font-weight:700;margin:12px 0}.lesson-editor input:not([type=checkbox]),.lesson-editor select{display:block;width:100%;padding:11px;border:1px solid #cbd3e6;border-radius:10px;margin-top:6px;background:white}.lesson-editor .approve-toggle{display:flex;align-items:center;gap:8px}.lesson-editor .approve-toggle input{width:auto}.lesson-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.lesson-editor .question-editor{margin:18px 0}.lesson-editor .heading-row>label{min-width:200px}
+.language-picker{max-width:300px;margin:18px auto}.language-picker label{display:block;font-weight:700}.language-picker select{width:100%;margin-top:7px;border:1px solid #cbd3e6;border-radius:12px;padding:12px;background:white}
+
+/* TilliTalk mobile and tablet improvements */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #7658dd;
+  outline-offset: 3px;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  main {
+    padding: 20px 16px 45px;
+  }
+
+  .library-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .play-area {
+    max-width: 100%;
+  }
+
+  .lesson-media {
+    height: min(42vh, 340px);
+  }
+
+  .admin-panel {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    padding: 12px 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brand {
+    font-size: 23px;
+  }
+
+  .topbar nav {
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .topbar nav button {
+    font-size: 14px;
+    padding: 10px 12px;
+    min-height: 44px;
+  }
+
+  main {
+    padding: 16px 12px 35px;
+  }
+
+  .hero {
+    margin-top: 25px;
+  }
+
+  .hero-emoji {
+    font-size: 46px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .big {
+    width: 100%;
+    max-width: 350px;
+    font-size: 21px;
+    padding: 17px;
+  }
+
+  .library-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lesson-media {
+    height: min(38vh, 260px);
+  }
+
+  .play-card {
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .question-line h2 {
+    font-size: 23px;
+  }
+
+  .word {
+    font-size: 19px;
+    min-height: 52px;
+    padding: 12px 16px;
+  }
+
+  .word-bank {
+    gap: 9px;
+  }
+
+  .answer-zone {
+    min-height: 85px;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .actions button {
+    flex: 1;
+    min-height: 50px;
+  }
+
+  .actions .primary {
+    margin-left: 0;
+  }
+
+  .admin-panel {
+    padding: 14px;
+  }
+
+  .upload-dropzone {
+    padding: 20px 12px;
+  }
+
+  .lesson-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .heading-row > button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar nav button {
+    font-size: 12px;
+    padding: 9px;
+  }
+
+  .word {
+    font-size: 17px;
+    padding: 10px 12px;
+  }
+}
+
+/* TilliTalk fox branding — November 2026 */
+
+:root {
+  font-family: 'Nunito', sans-serif;
+  color: #17345B;
+  background: #FFF8ED;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #FFF8ED;
+  color: #17345B;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: 'Nunito', sans-serif;
+}
+
+button {
+  color: #17345B;
+  border-color: #D7E5E2;
+}
+
+button:hover {
+  background: #E9F5F2;
+}
+
+.topbar {
+  background: #FFFFFF;
+  border-bottom-color: #D7E5E2;
+}
+
+.brand {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.brand:hover {
+  background: transparent;
+}
+
+.primary,
+.upload-choose-button {
+  background: #128D88;
+  border-color: #128D88;
+  color: white;
+}
+
+.primary:hover {
+  background: #0E706C;
+}
+
+.upload-dropzone {
+  background: #F0FAF7;
+  border-color: #80C5B8;
+}
+
+.upload-dropzone.is-dragging {
+  background: #DDF3ED;
+  border-color: #128D88;
+}
+
+.word.selected {
+  background: #DDF3ED;
+}
+
+.word {
+  box-shadow: 0 3px 0 #C7DDD8;
+}
+
+.hint {
+  background: #E8F5F2;
+}
+
+.progress-track div {
+  background: #128D88;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline-color: #F2A65A;
+}
+
+@media (max-width: 600px) {
+  .brand img {
+    max-height: 48px;
+  }
+}
+
+/* TilliTalk celebration — colorful streamers */
+
+.streamer-celebration {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.streamer-celebration span {
+  position: absolute;
+  font-size: clamp(48px, 9vw, 100px);
+  animation: streamer-burst 5s ease-out forwards;
+}
+
+.streamer-celebration span:nth-child(1) {
+  --x: -38vw;
+  --y: -30vh;
+  animation-delay: 0s;
+}
+
+.streamer-celebration span:nth-child(2) {
+  --x: 35vw;
+  --y: -25vh;
+  animation-delay: 0.1s;
+}
+
+.streamer-celebration span:nth-child(3) {
+  --x: -28vw;
+  --y: 30vh;
+  animation-delay: 0.2s;
+}
+
+.streamer-celebration span:nth-child(4) {
+  --x: 30vw;
+  --y: 28vh;
+  animation-delay: 0.15s;
+}
+
+.streamer-celebration span:nth-child(5) {
+  --x: 0vw;
+  --y: -38vh;
+  animation-delay: 0.25s;
+}
+
+.streamer-celebration strong {
+  position: relative;
+  z-index: 1;
+  background: #FFF8ED;
+  color: #128D88;
+  padding: 18px 26px;
+  border: 3px solid #F2A65A;
+  border-radius: 24px;
+  font-size: clamp(22px, 5vw, 36px);
+  text-align: center;
+  box-shadow: 0 8px 30px #17345B22;
+  animation: celebration-message 5s ease-out forwards;
+}
+
+@keyframes streamer-burst {
+  0% {
+    transform: translate(0, 0) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1.3) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes celebration-message {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  12% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .streamer-celebration span,
+  .streamer-celebration strong {
+    animation: none;
+  }
+}
+
+
+/* TilliTalk wild-animal marching band */
+
+.animal-band {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.band-message {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90%;
+  padding: 16px 24px;
+  background: #FFF8ED;
+  border: 3px solid #F2A65A;
+  border-radius: 24px;
+  color: #128D88;
+  font-size: clamp(20px, 5vw, 34px);
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 8px 30px #17345B22;
+  animation: band-message-pop 5s ease-in-out forwards;
+}
+
+.band-parade {
+  position: absolute;
+  bottom: 8%;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  width: max-content;
+  animation: band-march 5s linear forwards;
+}
+
+.band-parade span {
+  display: inline-block;
+  font-size: clamp(38px, 7vw, 76px);
+  white-space: nowrap;
+  animation: band-bounce 0.45s ease-in-out infinite alternate;
+}
+
+.band-parade span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.band-parade span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.band-parade span:nth-child(4) {
+  animation-delay: 0.1s;
+}
+
+@keyframes band-march {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes band-bounce {
+  from {
+    transform: translateY(0) rotate(-5deg);
+  }
+  to {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+@keyframes band-message-pop {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  15% {
+    opacity: 1;
+    scale: 1;
+  }
+  80% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band-parade,
+  .band-parade span,
+  .band-message {
+    animation: none;
+  }
+
+  .band-parade {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* TilliTalk cheerful theme: safe visual overrides for existing responsive layout. */
+:root { --tt-ink:#25305b; --tt-purple:#7654e8; --tt-pink:#ff6eae; --tt-yellow:#ffcc4d; --tt-blue:#52b9f7; --tt-green:#45cda0; }
+*, *::before, *::after { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; color:var(--tt-ink); background:linear-gradient(155deg,#e7f9ff 0%,#fdf1ff 48%,#fff8d9 100%); }
+.app { min-height:100vh; background:radial-gradient(circle at 8% 17%,#ffddf1 0 85px,transparent 86px),radial-gradient(circle at 92% 32%,#dcf5ff 0 105px,transparent 106px),linear-gradient(155deg,#e7f9ff,#fdf1ff 55%,#fff8d9); color:var(--tt-ink); }
+.app .topbar { background:rgba(255,255,255,.92); border-bottom:4px solid #ffe37b; box-shadow:0 5px 18px rgba(84,83,163,.10); }
+.app .topbar nav { display:flex; flex-wrap:wrap; gap:7px; }
+.app .topbar nav button { background:#eef2ff; color:#49379b; border:2px solid #dcd6ff; border-radius:999px; font-weight:800; padding:10px 13px; }
+.app .topbar nav button:hover { background:#e5ddff; }
+.app .hero { background:rgba(255,255,255,.89); border:3px solid #f8d5fb; border-radius:30px; box-shadow:0 14px 32px rgba(113,91,164,.13); }
+.app .hero h1 { color:#6744c9; font-weight:900; letter-spacing:-.035em; }
+.app .hero-emoji { font-size:clamp(2.4rem,8vw,4.8rem); filter:drop-shadow(0 5px 2px rgba(113,91,164,.10)); }
+.app button { touch-action:manipulation; transition:transform .13s ease,box-shadow .13s ease,background-color .13s ease; }
+.app button:not(:disabled):active { transform:scale(.97); }
+.app button.primary, .app .primary { background:linear-gradient(110deg,#7955ed,#ee67ac); color:white; border:0; border-radius:18px; font-weight:900; box-shadow:0 6px 0 #d6b3ee,0 10px 20px rgba(111,81,187,.16); }
+.app button.primary:hover { filter:brightness(1.05); }
+.app button.primary:disabled { opacity:.55; box-shadow:none; }
+.app .play-card { background:#fff; border:3px solid #e2d8ff; border-radius:26px; box-shadow:0 12px 30px rgba(97,84,160,.12); overflow:hidden; }
+.app .lesson-media { border-radius:20px; max-width:100%; }
+.app .question-line h2 { color:#5538a3; font-weight:900; }
+.app .question-line .sound { background:#e5f7ff; border:2px solid #8cd8ff; border-radius:15px; min-width:44px; min-height:44px; }
+.app .progress { color:#6246ae; font-weight:800; }
+.app .progress-track { background:#e8e4fa; border-radius:999px; overflow:hidden; min-height:12px; }
+.app .progress-track > div { background:linear-gradient(90deg,#56c9f4,#54d9a7,#ffe06b,#ff83b6,#9776ff); border-radius:999px; min-height:12px; }
+.app .answer-zone { background:#f2fbff; border:3px dashed #9bd8f7; border-radius:19px; min-height:68px; padding:12px; }
+.app .word-bank { display:flex; flex-wrap:wrap; gap:9px; }
+.app .word-bank .word { background:#ffebad; color:#3f3263; border:2px solid #f3c957; border-radius:14px; padding:11px 15px; min-height:46px; font-size:clamp(1rem,2.5vw,1.2rem); font-weight:850; box-shadow:0 4px 0 #e6cb80; }
+.app .word-bank .word:nth-child(4n + 2) { background:#d7f6ff; border-color:#8adbf5; box-shadow:0 4px 0 #a4dce9; }
+.app .word-bank .word:nth-child(4n + 3) { background:#f9dcf2; border-color:#efa5d7; box-shadow:0 4px 0 #e7b9d9; }
+.app .word-bank .word:nth-child(4n + 4) { background:#d9f7d9; border-color:#8ad8a1; box-shadow:0 4px 0 #a5dcb4; }
+.app .answer-zone .word.selected { background:#d9f9e6; border:2px solid #65c997; color:#24513c; border-radius:13px; font-weight:850; min-height:44px; }
+.app .feedback.good { background:#e1fbe7; color:#216844; border:2px solid #9ce0ae; border-radius:16px; font-weight:850; }
+.app .feedback.try { background:#fff2dc; color:#82531d; border:2px solid #f6d58b; border-radius:16px; font-weight:750; }
+.app .admin-panel, .app .media-card, .app .question-editor { background:#fff; border:2px solid #e8dfff; border-radius:19px; box-shadow:0 6px 18px rgba(106,85,154,.07); }
+.app .media-card { overflow:hidden; }
+.app .hint { background:#f3edff; border-radius:15px; padding:12px; color:#5c469d; }
+.app input, .app select, .app textarea { max-width:100%; }
+.app input:focus-visible, .app select:focus-visible, .app button:focus-visible { outline:3px solid #f8ad46; outline-offset:3px; }
+.app footer { color:#6b57a2; }
+@media (max-width:600px) {
+ .app .topbar { gap:8px; }
+ .app .topbar .brand img { max-height:53px; }
+ .app .topbar nav button { padding:8px 10px; font-size:.88rem; }
+ .app .hero { border-radius:22px; }
+ .app .play-card { border-radius:19px; }
+ .app .word-bank .word { padding:10px 12px; min-height:46px; }
+ .app .question-line { flex-wrap:wrap; }
+}
+@media (prefers-reduced-motion:reduce) { .app button { transition:none; } }
+
+/* The ninth-answer celebration crosses the existing learning screen.
+   No dark backdrop, video rectangle, or touch-blocking overlay. */
+.app .tilli-parade {
+  position:fixed; left:0; right:0; bottom:clamp(74px, 13vh, 140px);
+  height:105px; z-index:9999; overflow:hidden; pointer-events:none;
+  background:transparent; contain:layout paint;
+}
+.app .tilli-parade-march {
+  position:absolute; top:4px; left:0; width:max-content;
+  display:flex; align-items:flex-end; gap:clamp(8px, 2vw, 22px);
+  animation:tilli-parade-cross 6.6s linear both;
+}
+.app .tilli-parade-animal {
+  position:relative; display:inline-flex; align-items:center;
+  font-size:clamp(43px, 9vw, 72px); line-height:1.2;
+  filter:drop-shadow(0 3px 2px rgba(0,0,0,.12));
+  animation:tilli-parade-step .42s ease-in-out infinite alternate;
+}
+.app .tilli-parade-animal small {
+  font-size:.45em; margin-left:-.25em; align-self:flex-end;
+}
+@keyframes tilli-parade-cross {
+  from {transform:translateX(calc(100vw + 12px));}
+  to {transform:translateX(-110%);}
+}
+@keyframes tilli-parade-step {
+  from {transform:translateY(0) rotate(-4deg);}
+  to {transform:translateY(-10px) rotate(4deg);}
+}
+@media (max-width:600px) {
+  .app .tilli-parade {height:84px; bottom:100px;}
+  .app .tilli-parade-animal {font-size:48px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .app .tilli-parade-animal {animation:none;}
+}
+
+/* Combined picture management screen */
+.manage-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 22px}
+.manage-toolbar input{flex:1 1 220px;min-width:0;border:2px solid #d9c5ff;border-radius:16px;padding:13px 16px;font:inherit}
+.manage-toolbar button{min-height:42px}
+.manage-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px}
+.manage-card{background:linear-gradient(155deg,#fff 30%,#fff4fc);border:3px solid #e4d3ff;border-radius:23px;overflow:hidden;box-shadow:0 7px 17px #7a50a61c;display:flex;flex-direction:column}
+.manage-card.is-selected{border-color:#ec4b92;background:#fff0f8}
+.manage-thumb{height:180px;background:#edf4ff;display:flex;align-items:center;justify-content:center;color:#6b5c8a;overflow:hidden}
+.manage-thumb img,.manage-thumb video{width:100%;height:100%;object-fit:contain}
+.manage-details{padding:14px 14px 6px;flex:1;overflow-wrap:anywhere}
+.manage-details strong{font-size:1.05rem;color:#473087}
+.manage-details p{color:#665c82;font-size:.9rem;margin:8px 0}
+.manage-actions{padding:8px 14px 16px;display:flex;flex-direction:column;gap:12px}
+.manage-actions .primary{width:100%;font-size:.9rem;white-space:normal;min-height:48px}
+.manage-select{display:flex;gap:10px;align-items:center;font-weight:700;color:#593c88;cursor:pointer}
+.manage-select input{width:23px;height:23px;accent-color:#d62e87}
+@media(max-width:600px){.manage-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.manage-thumb{height:130px}.manage-details{padding:10px}.manage-actions{padding:8px}.manage-actions .primary{font-size:.8rem;padding:9px 6px}.manage-toolbar button{font-size:.82rem}}
+@media(max-width:370px){.manage-grid{grid-template-columns:1fr}.manage-thumb{height:200px}}
+
+/* Calm forest backdrop INSIDE the functional learning card only.
+   Original lesson images remain unchanged. No animation. */
+.app .play-card {
+  background-color: #f6fff1;
+  background-image: url('/tillitalk-forest.svg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-color: #d5e9b6;
+}
+.app .play-card .question-line,
+.app .play-card > p.muted,
+.app .play-card .actions,
+.app .play-card .feedback {
+  position: relative;
+  z-index: 1;
+}
+.app .play-card .question-line h2 {
+  text-shadow: 0 1px 0 rgba(255,255,255,.85);
+}
+.app .play-card .answer-zone {
+  background: rgba(246,252,255,.94);
+}
+.app .play-card .lesson-media {
+  position: relative;
+  z-index: 1;
+  border: 4px solid #f7d95b;
+  box-shadow: 0 3px 12px rgba(54,101,60,.12);
+}
+@media (max-width:600px) {
+  .app .play-card { background-position: center center; background-size: cover; }
+}
+
+.app main{max-width:900px;margin:auto;padding:16px}.lesson-media{display:block;max-height:42vh;object-fit:contain;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px}.hero{text-align:center;padding:24px}.actions{display:flex;gap:8px;flex-wrap:wrap}.play-card{padding:16px}footer{text-align:center;font-size:12px;padding:12px} [hidden]{display:none!important}
